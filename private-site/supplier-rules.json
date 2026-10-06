@@ -1,0 +1,134 @@
+{
+  "updated": "2026-10-05",
+  "source": "Indicazioni Aldo in chat",
+  "rules": [
+    {
+      "aliases": [
+        "Frutta e verdura",
+        "Frutta"
+      ],
+      "supplier": "Frutta e Verdura BAAS SNC",
+      "group": "Cucina",
+      "category": "Frutta e verdura",
+      "description": "Fornitore per acquisti semplici e last minute; “Frutta” indica lo stesso fornitore."
+    },
+    {
+      "aliases": [
+        "Macelleria"
+      ],
+      "supplier": "Italycarni SRL",
+      "group": "Cucina",
+      "category": "Carne",
+      "description": "Carne per la cucina."
+    },
+    {
+      "aliases": [
+        "Cannelloni / Food Service",
+        "Cannelloni",
+        "Cancelloni"
+      ],
+      "supplier": "Cancelloni Food Service",
+      "group": "Cucina",
+      "category": "Salumi e formaggi",
+      "description": "Nome e categoria precisati da Aldo il 05/10/2026."
+    },
+    {
+      "aliases": [
+        "Pane"
+      ],
+      "supplier": "Pane",
+      "group": "Cucina",
+      "category": "Pane",
+      "description": ""
+    },
+    {
+      "aliases": [
+        "Ghiaccio"
+      ],
+      "supplier": "Ghiaccio",
+      "group": "Bar",
+      "category": "Ghiaccio",
+      "description": ""
+    },
+    {
+      "aliases": [
+        "Tigre"
+      ],
+      "supplier": "Tigre",
+      "group": "Varie",
+      "category": "Supermercato",
+      "description": "Supermercato; acquisti classificati nelle varie."
+    },
+    {
+      "aliases": [
+        "Partesa"
+      ],
+      "supplier": "Partesa SRL",
+      "group": "Bar",
+      "category": "Fusti birra e gas impianto",
+      "description": "Fusti di birra alla spina e gas dell’impianto birra; ripartizione tra i due non disponibile."
+    },
+    {
+      "aliases": [
+        "L’orto di Nonni"
+      ],
+      "supplier": "L’Orto dei Nonni",
+      "group": "Cucina",
+      "category": "Forniture cucina",
+      "description": "Destinazione cucina confermata da Aldo."
+    },
+    {
+      "aliases": [
+        "Spese cinesi",
+        "Cinesi"
+      ],
+      "supplier": "Spese cinesi",
+      "group": "Varie",
+      "category": "Acquisti vari",
+      "description": "Acquisti classificati nelle varie."
+    },
+    {
+      "aliases": [
+        "Ferramenta"
+      ],
+      "supplier": "Ferramenta",
+      "group": "Varie",
+      "category": "Ferramenta e manutenzione",
+      "description": ""
+    },
+    {
+      "aliases": [
+        "Edocarta"
+      ],
+      "supplier": "Edocarta1977 SRL",
+      "group": "Varie",
+      "category": "Tovaglie, tovaglioli e materiali da tavola",
+      "description": "Tovaglie, tovaglioli e materiali analoghi per il locale."
+    },
+    {
+      "aliases": [
+        "Beffeci",
+        "Bieffeci",
+        "Bieffeci 27",
+        "BRC"
+      ],
+      "supplier": "Bieffeci 97 SRL",
+      "group": "Cucina",
+      "category": "Forniture cucina / dessert",
+      "description": "Nome identificato dal documento di esempio; categoria confermata da Aldo."
+    },
+    {
+      "aliases": [
+        "Massari"
+      ],
+      "supplier": "Massari SRL",
+      "group": "Cucina",
+      "category": "Latticini",
+      "description": "Mozzarella e stracciatella nel documento di esempio."
+    }
+  ],
+  "unresolved": [
+    "Movimenti resto distributore sigarette"
+  ],
+  "exampleDocumentsPolicy": "Documenti del 05/10/2026 solo per identificare fornitori: non pubblicare e non importare importi come nuove spese."
+}

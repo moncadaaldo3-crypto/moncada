@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  included_files = ["private-site/**", "database.json", "server-config.json"]
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/site"
+  status = 200
+  force = true

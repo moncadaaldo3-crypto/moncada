@@ -1,0 +1,35 @@
+{
+  "supplier": "King Distribuzione",
+  "group": "Cucina",
+  "listDate": "2024-05-20",
+  "receivedDate": "2026-10-06",
+  "vatIncluded": false,
+  "source": "listino-king-distribuzione.jpg",
+  "items": [
+    {
+      "name": "Base tonda",
+      "size": "33 cm",
+      "unitsPerPack": 24,
+      "packPriceCents": 3600,
+      "unitPriceCents": 150
+    },
+    {
+      "name": "Base pinsa classica maxi",
+      "size": "250 g · 18 × 34 cm",
+      "unitsPerPack": 30,
+      "packPriceCents": 4500,
+      "unitPriceCents": 150
+    },
+    {
+      "name": "Smash potato rolls",
+      "size": "80 g · 12 cm",
+      "unitsPerPack": 72,
+      "packPriceCents": 5760,
+      "unitPriceCents": 80
+    }
+  ],
+  "expense": false,
+  "pricesConfirmedCurrent": true,
+  "confirmedDate": "2026-10-06",
+  "confirmedBy": "Aldo"
+}

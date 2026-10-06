@@ -1,0 +1,1 @@
+{"name":"accounting-428-netlify","private":true,"type":"module","scripts":{"build":"node --check netlify/functions/site.mjs","test":"node test.mjs"},"dependencies":{"@netlify/blobs":"^10.0.0"},"engines":{"node":">=22"}}

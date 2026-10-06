@@ -1,0 +1,26 @@
+[
+  {
+    "supplier": "Partesa SRL",
+    "group": "Bar",
+    "type": "DDT",
+    "number": "7601073169",
+    "documentDate": "2026-10-05",
+    "receivedDate": "2026-10-06",
+    "page": 1,
+    "pageCount": 2,
+    "source": "partesa-ddt-2026-10-05-pagina1.jpeg",
+    "total": 1113.37,
+    "includedInExpenses": true,
+    "status": "DDT completo; spesa registrata una sola volta. Collegare eventuale fattura successiva senza duplicare la spesa.",
+    "sources": [
+      "partesa-ddt-2026-10-05-pagina1.jpeg",
+      "partesa-ddt-2026-10-05-pagina2.jpeg"
+    ],
+    "pagesAcquired": 2,
+    "netCents": 91260,
+    "vatCents": 20077,
+    "totalCents": 111337,
+    "accessoryCostsCents": 150,
+    "expenseId": "exp-070"
+  }
+]

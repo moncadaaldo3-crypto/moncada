@@ -1,0 +1,161 @@
+[
+  {
+    "number": "26961",
+    "date": "05/10/2026",
+    "supplier": "Vinciguerra Beverage S.r.l.",
+    "net": 597.79,
+    "vat": 131.51,
+    "total": 729.3,
+    "transport": 1.5,
+    "terms": "Bonifico 30 giorni",
+    "payment": "Non confermato",
+    "source": "fattura-vinciguerra-2026-10-05-26961.jpg",
+    "expenseId": "exp-069",
+    "items": [
+      {
+        "name": "Tassoni Cedrata",
+        "size": "18 cl",
+        "packages": 1,
+        "perPackage": 25,
+        "units": 25,
+        "amount": 22.31,
+        "unitCost": 0.8924
+      },
+      {
+        "name": "Red Bull Energy Bar",
+        "size": "25 cl",
+        "packages": 1,
+        "perPackage": 24,
+        "units": 24,
+        "amount": 22.8,
+        "unitCost": 0.9500000000000001
+      },
+      {
+        "name": "Schweppes Pompelmo Rosa",
+        "size": "18 cl",
+        "packages": 1,
+        "perPackage": 24,
+        "units": 24,
+        "amount": 19.73,
+        "unitCost": 0.8220833333333334
+      },
+      {
+        "name": "Birra Ceres Strong",
+        "size": "33 cl",
+        "packages": 1,
+        "perPackage": 24,
+        "units": 24,
+        "amount": 30.9,
+        "unitCost": 1.2874999999999999
+      },
+      {
+        "name": "Birra Tennent’s Super",
+        "size": "33 cl",
+        "packages": 3,
+        "perPackage": 24,
+        "units": 72,
+        "amount": 93.68,
+        "unitCost": 1.301111111111111
+      },
+      {
+        "name": "Birra Nastro Azzurro",
+        "size": "33 cl",
+        "packages": 2,
+        "perPackage": 24,
+        "units": 48,
+        "amount": 44.84,
+        "unitCost": 0.9341666666666667
+      },
+      {
+        "name": "Amaro Jägermeister Italiano",
+        "size": "1 l",
+        "packages": 2,
+        "perPackage": 1,
+        "units": 2,
+        "amount": 29.0,
+        "unitCost": 14.5
+      },
+      {
+        "name": "Whisky J & B",
+        "size": "1 l",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 16.57,
+        "unitCost": 16.57
+      },
+      {
+        "name": "Amaretto di Saronno",
+        "size": "1 l",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 18.17,
+        "unitCost": 18.17
+      },
+      {
+        "name": "Liquore Malibu",
+        "size": "1 l",
+        "packages": 2,
+        "perPackage": 1,
+        "units": 2,
+        "amount": 32.46,
+        "unitCost": 16.23
+      },
+      {
+        "name": "Gin Mare",
+        "size": "70 cl",
+        "packages": 6,
+        "perPackage": 1,
+        "units": 6,
+        "amount": 171.46,
+        "unitCost": 28.576666666666668
+      },
+      {
+        "name": "Amaro del Capo",
+        "size": "70 cl",
+        "packages": 2,
+        "perPackage": 1,
+        "units": 2,
+        "amount": 19.0,
+        "unitCost": 9.5
+      },
+      {
+        "name": "Monin Sciroppo Passion Fruit",
+        "size": "70 cl",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 14.44,
+        "unitCost": 14.44
+      },
+      {
+        "name": "Whisky Jack Daniel Apple",
+        "size": "1 l",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 31.75,
+        "unitCost": 31.75
+      },
+      {
+        "name": "Monin Sciroppo Popcorn",
+        "size": "70 cl",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 13.9,
+        "unitCost": 13.9
+      },
+      {
+        "name": "Monin Sciroppo Fragola",
+        "size": "70 cl",
+        "packages": 1,
+        "perPackage": 1,
+        "units": 1,
+        "amount": 15.28,
+        "unitCost": 15.28
+      }
+    ]
+  }
+]

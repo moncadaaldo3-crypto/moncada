@@ -1,0 +1,18 @@
+{
+  "startDate": "2026-09-01",
+  "excludeReferenceDocuments": true,
+  "closingDatePolicy": {
+    "use": "shiftStartDate",
+    "shiftStart": "17:00",
+    "shiftEnd": "02:00",
+    "endsNextDay": true,
+    "confirmedBy": "Aldo"
+  },
+  "trackExpensePayments": false,
+  "expensePolicy": "Registrare tutte le spese senza distinguere stato o metodo di pagamento.",
+  "inventoryCounts": false,
+  "cocktailRecipeBasis": "Ricette ufficiali IBA quando disponibili; eventuali variazioni del locale da indicare.",
+  "dashboardPriority": "Incassi e spese del mese; mantenere la panoramica attuale.",
+  "fixedCostsStatus": "Da acquisire",
+  "kitchenRecipesStatus": "Da acquisire"
+}

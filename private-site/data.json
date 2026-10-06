@@ -1,0 +1,1196 @@
+[
+  {
+    "category": "Drink e bevande",
+    "name": "Birre in bottiglia · 33 cl",
+    "price": 5,
+    "source": "Indicazioni Aldo · 05/10/2026",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Cocktail semplici · Gin Tonic, Vodka Lemon",
+    "price": 8,
+    "source": "Indicazioni Aldo · 05/10/2026",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Cocktail standard · Negroni, 4 Bianchi",
+    "price": 9,
+    "source": "Indicazioni Aldo · 05/10/2026",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Bibite fino alle 21:00",
+    "price": 3.5,
+    "source": "Indicazioni Aldo · 05/10/2026",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Bibite dopo le 21:00",
+    "price": 4,
+    "source": "Indicazioni Aldo · 05/10/2026",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Cocktail premium",
+    "price": null,
+    "source": "Aldo · Grey Goose, Belvedere, Hendrick’s, Gin Mare; fascia indicativa",
+    "service": "table",
+    "priceMin": 10,
+    "priceMax": 12
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Spritz",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Calice di vino",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Prosecco",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Acqua piccola",
+    "price": 1.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Acqua grande",
+    "price": 2.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Caffè",
+    "price": 1.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Decaffeinato",
+    "price": 1.8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Amaro",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Grappa bianca",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Grappa barrique",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Ichnusa · piccola",
+    "price": 4,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Ichnusa · media",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Heineken · piccola",
+    "price": 4,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Heineken · media",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Keller · piccola",
+    "price": 4,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Keller · media",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Kwak · piccola",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Kwak · media",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Kyra · piccola",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Birre alla spina",
+    "name": "Kyra · media",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Aperitivo",
+    "name": "AperiTagliere · a persona",
+    "price": 14,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Aperitivo",
+    "name": "AperiPesce · a persona",
+    "price": 15,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Aperitivo",
+    "name": "AperiFritto · a persona",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Aperitivo",
+    "name": "AperiPinsa · a persona",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Tagliere di salumi e formaggi",
+    "price": 18,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Tutti fritti",
+    "price": 18,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Olive",
+    "price": 3.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Taralli",
+    "price": 3.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Primi",
+    "name": "Amatriciana",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Primi",
+    "name": "Carbonara",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Primi",
+    "name": "Gricia",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Primi",
+    "name": "Cacio e pepe",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Secondi",
+    "name": "Bistecca 300 g",
+    "price": 18,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Secondi",
+    "name": "Hamburger al piatto",
+    "price": 14,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Secondi",
+    "name": "Cotoletta al piatto",
+    "price": 14,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Secondi",
+    "name": "Stinco di maiale",
+    "price": 18,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Secondi",
+    "name": "Polpette di manzo al sugo",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Contorni",
+    "name": "Patate al forno",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Contorni",
+    "name": "Insalata misticanza",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Contorni",
+    "name": "Verdure di stagione ripassate",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Gamberi in tempura",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Cartoccio di calamari",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Polpette di pesce",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Onion rings",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Patate fritte",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Patate Le Salutari",
+    "price": 8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Alette Crispy",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Alette Buffalo",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Olive ascolane",
+    "price": 4,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Mozzarelline stick",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Jalapenos",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Nuggets",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Crocchette pommes noisettes",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì pomodoro e mozzarella",
+    "price": 2,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì con rigaglie di pollo",
+    "price": 2,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì nduja",
+    "price": 2,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì mortadella e pistacchio",
+    "price": 2.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Fritti",
+    "name": "Crocchette Pulled Pork",
+    "price": 4,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Hamburger",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Cheeseburger",
+    "price": 11,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Bacon Cheeseburger",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Spicy Crisp",
+    "price": 12,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Chicken Burger",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Burgers",
+    "name": "Hot Dog",
+    "price": 8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Margherita",
+    "price": 8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Marinara con olive",
+    "price": 8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Funghi",
+    "price": 8.5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Diavola",
+    "price": 9,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Quattro formaggi",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Capricciosa",
+    "price": 11,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Franceschino",
+    "price": 11,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Wurstel e patatine",
+    "price": 9,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Salsiccia e patate",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Focaccia",
+    "price": 5,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Focaccia con crudo",
+    "price": 9,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Focaccia estiva",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Focaccia golosa",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Focaccia Modena",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Boscaiola",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Quattro formaggi",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Wurstel e patatine",
+    "price": 9,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Funghi",
+    "price": 8,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Salsiccia e patate",
+    "price": 10,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Dolci",
+    "name": "Cheesecake",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Dolci",
+    "name": "Tortino al cioccolato fondente",
+    "price": 6,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Dolci",
+    "name": "Pizza Nutella",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Dolci",
+    "name": "Tiramisù",
+    "price": 7,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Compleanni",
+    "name": "Formula buffet · a persona",
+    "price": 19,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Compleanni",
+    "name": "Formula dopocena · a persona",
+    "price": 14,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Compleanni",
+    "name": "Pirofila di pasta · 800 g",
+    "price": 35,
+    "source": "Menù PDF",
+    "service": "table"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Tagliere · salumi e formaggi",
+    "price": 16,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Antipasti",
+    "name": "Tutti fritti",
+    "price": 16,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Gamberi in tempura",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Cartoccio calamari",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Patatine Salutari",
+    "price": 7,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Patatine fritte",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Jalapenos",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Alette Buffalo",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Alette Crispy",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Crocchette Pulled",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Onion rings",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Mozzarelline stick",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Nuggets",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Olive ascolane",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Crocchette pommes",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Filetti di pollo",
+    "price": 7,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì",
+    "price": 2,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì manzo",
+    "price": 2,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì mortadella e pistacchio",
+    "price": 2.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Supplì nduja",
+    "price": 2,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Polpette di pesce",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Fiori di zucca e alici",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Fritti",
+    "name": "Filetto di baccalà",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Boscaiola",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Salsiccia e patate",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Quattro formaggi",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Würstel e patatine",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse bianche",
+    "name": "Funghi",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Margherita",
+    "price": 7,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Salsiccia e patate",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Capricciosa",
+    "price": 10,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Diavola",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Marinara con olive",
+    "price": 7,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Quattro formaggi",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Franceschino",
+    "price": 10,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Würstel e patatine",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Pinse rosse",
+    "name": "Funghi",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Focacce",
+    "name": "Focaccia",
+    "price": 6,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Focacce",
+    "name": "Focaccia con crudo",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Focacce",
+    "name": "Focaccia estiva",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Focacce",
+    "name": "Focaccia golosa",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Bacon Cheeseburger",
+    "price": 10.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Spicy Crisp Burger",
+    "price": 10.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Cheeseburger",
+    "price": 9.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Hamburger",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Cotoletta Burger",
+    "price": 8.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Burgers · con patatine fritte",
+    "name": "Hot Dog",
+    "price": 7.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Contorni",
+    "name": "Patate al forno",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Contorni",
+    "name": "Cicoria ripassata",
+    "price": 5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Contorni",
+    "name": "Insalata misticanza",
+    "price": 4,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Piatti · con patate al forno",
+    "name": "Bistecca di manzo",
+    "price": 16,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Piatti · con patate al forno",
+    "name": "Stinco di maiale",
+    "price": 16,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Piatti · con patate al forno",
+    "name": "Hamburger al piatto",
+    "price": 14,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Piatti · con patate al forno",
+    "name": "Cotoletta al piatto",
+    "price": 14,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Piatti · con patate al forno",
+    "name": "Polpette al sugo",
+    "price": 8,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Primi",
+    "name": "Carbonara",
+    "price": 12,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Primi",
+    "name": "Gricia",
+    "price": 12,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Primi",
+    "name": "Amatriciana",
+    "price": 12,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Primi",
+    "name": "Cacio e pepe",
+    "price": 12,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Dolci",
+    "name": "Cheesecake",
+    "price": 6,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Dolci",
+    "name": "Tiramisù",
+    "price": 6,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Dolci",
+    "name": "Tortino al cioccolato",
+    "price": 6,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Dolci",
+    "name": "Pizza Nutella",
+    "price": 7,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Acqua 0,5 l",
+    "price": 1,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Coca-Cola",
+    "price": 3,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Ichnusa non filtrata 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Heineken 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Nastro Azzurro 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Beck’s 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Corona 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Ceres 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Bevande",
+    "name": "Tennent’s 33 cl",
+    "price": 3.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Consegna",
+    "name": "Consegna a domicilio",
+    "price": 2.5,
+    "service": "takeaway",
+    "source": "Menù asporto · fornito da Aldo 05/10/2026"
+  },
+  {
+    "category": "Drink e bevande",
+    "name": "Cocktail con distillati più ricercati",
+    "price": null,
+    "priceMin": 13,
+    "priceMax": 15,
+    "source": "Aldo · Monkey 47, Amuerte Gin; fascia indicativa",
+    "service": "table"
+  }
+]
