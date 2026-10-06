@@ -30,7 +30,7 @@ La password viene verificata sul server. Non è inserita nel codice inviato al b
 
 Il pulsante Esporta database JSON scarica un backup con tutti i dati contabili e gli allegati nuovi. Gli allegati storici sono nella cartella private-site del pacchetto: conserva anche lo ZIP. Il backup è esportabile, non è presente una funzione di ripristino/importazione dall'interfaccia.
 
-Controlli duplicati: una chiusura per data; per le nuove fatture fornitore + numero + anno. Non reinserire la fattura di un DDT già contabilizzato. Per correggere una registrazione in questa prova serve intervenire sull'archivio: non c'è ancora un pannello di modifica/cancellazione.
+Controlli duplicati: una chiusura per data; per le nuove fatture fornitore + numero + anno. Non reinserire la fattura di un DDT già contabilizzato. Dal pulsante Modifica / elimina puoi correggere o eliminare documenti storici e nuovi. La cancellazione richiede conferma ed esclude la voce dai totali; gli originali e gli allegati vengono conservati. Le modifiche persistono nello store Netlify Blobs e sono incluse nel backup JSON. Il controllo di revisione impedisce di sovrascrivere modifiche concorrenti: in caso di conflitto ricarica la pagina.
 
 Il sito ChatGPT e questa copia Netlify NON si sincronizzano. Supabase non è ancora configurato; l'archivio JSON esportabile permette una successiva migrazione.
 

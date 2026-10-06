@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHandler} from './netlify/functions/site.mjs';
-const map=new Map();const store={list:async()=>({blobs:[...map.keys()].map(key=>({key}))}),get:async key=>map.get(key)||null,setJSON:async(key,v)=>{if(map.has(key))return {modified:false};map.set(key,structuredClone(v));return {modified:true};}};
+const map=new Map();let serial=0;const store={list:async({prefix})=>({blobs:[...map.keys()].filter(k=>k.startsWith(prefix)).map(key=>({key}))}),get:async key=>map.get(key)?.data||null,getWithMetadata:async key=>map.has(key)?structuredClone(map.get(key)):null,setJSON:async(key,v,options={})=>{const prev=map.get(key);if(options.onlyIfNew&&prev||options.onlyIfMatch&&options.onlyIfMatch!==prev?.etag)return {modified:false};const etag=String(++serial);map.set(key,{data:structuredClone(v),etag});return {modified:true,etag};}};
 let handler=createHandler(()=>store);let cookie='';
 const call=(path,body,auth=true)=>handler(new Request('https://example.netlify.app'+path,{method:body?'POST':'GET',headers:{...(auth?{cookie}:{}),...(body?{'origin':'https://example.netlify.app','content-type':'application/json'}:{})},body:body?JSON.stringify(body):undefined}));
 assert.equal((await call('/expenses.json',null,false)).status,401);
@@ -20,3 +20,31 @@ const db=await (await call('/api/database')).json();assert.equal(db.uploads.leng
 assert.equal((await call('/server-config.json')).status,404);
 assert.equal((await call('/api/records',{...inv,number:'X',attachment:{mime:'text/html',data:'AA=='}})).status,400);
 console.log('PASS: login, protected data/assets, invoice/closing writes, duplicate checks, persisted reads, totals, JSON backup, upload validation.');
+
+const managed=async()=>await (await call('/api/manage')).json();
+let seeded=(await managed()).find(x=>x.id==='exp-069');
+const editInvoice={action:'edit',id:seeded.id,revision:seeded.revision,date:'2026-10-05',supplier:seeded.record.supplier,number:'26961',group:'Bar',amountCents:80000};
+assert.equal((await call('/api/manage',editInvoice,null)).status,401);
+assert.equal((await call('/api/manage',editInvoice)).status,200);
+assert.equal((await call('/api/manage',editInvoice)).status,409);
+assert.equal((await (await call('/invoices.json')).json())[0].total,800);
+seeded=(await managed()).find(x=>x.id==='exp-069');
+assert.equal((await call('/api/manage',{id:seeded.id,revision:seeded.revision,action:'delete'})).status,200);
+assert.equal((await (await call('/invoices.json')).json()).length,0);
+assert.equal((await (await call('/expenses.json')).json()).records.some(r=>r.id==='exp-069'),false);
+let closing=(await managed()).find(x=>x.id==='closing-2026-10-05');
+let editClosing={action:'edit',id:closing.id,revision:closing.revision,date:'2026-10-05',barTotal:10000,kitchenTotal:20000,pos:15000,cashAfterOutflow:15000,takeawayHandwritten:0,reportedTotal:30000};
+assert.equal((await call('/api/manage',{...editClosing,date:'2026-10-04'})).status,409);
+assert.equal((await call('/api/manage',{...editClosing,pos:-1})).status,400);
+assert.equal((await call('/api/manage',editClosing)).status,200);
+assert.equal((await (await call('/closings.json')).json()).find(r=>r.id===closing.id).reportedTotal,30000);
+closing=(await managed()).find(x=>x.id===closing.id);
+assert.equal((await call('/api/manage',{action:'delete',id:closing.id,revision:closing.revision})).status,200);
+handler=createHandler(()=>store);
+assert.equal((await (await call('/closings.json')).json()).some(r=>r.id===closing.id),false);
+for(const item of (await managed()).filter(x=>!x.seed)){
+ assert.equal((await call('/api/manage',{action:'delete',id:item.id,revision:item.revision})).status,200);
+}
+assert.equal((await (await call('/api/records')).json()).length,0);
+const backup=await (await call('/api/database')).json();assert.equal(backup.changes['exp-069'].deleted,true);assert.equal(backup.uploads.length,2);
+console.log('PASS: edits/deletions for original and uploaded records, invoice synchronization, total recomputation, stale revisions, duplicate dates, invalid edits, retained originals and restart persistence.');

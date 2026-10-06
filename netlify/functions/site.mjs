@@ -21,7 +21,41 @@ export function createHandler(storeFactory=()=>getStore({name:'accounting-428-js
  if(!exp||!mac||Number(exp)<Date.now()||!equal(sig(exp),mac))return path.startsWith('/api/')?response({error:'Accesso richiesto'},401):response(login,401,'text/html');
  if(path==='/logout'&&req.method==='POST')return response('',303,'text/plain',{'Location':'/','Set-Cookie':'session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0'});
  const store=storeFactory();
- const entries=async()=>{const {blobs}=await store.list({prefix:'records/'});return Promise.all(blobs.map(b=>store.get(b.key,{type:'json'})));};
+ const entries=async()=>{const {blobs}=await store.list({prefix:'records/'});return (await Promise.all(blobs.map(b=>store.get(b.key,{type:'json'})))).filter(Boolean);};
+ const effective=async()=>{
+  const uploads=await entries();const overlay=await store.getWithMetadata('management/overrides',{type:'json'});
+  const all=[...seed.expenses.records.map(record=>({id:record.id,type:'invoice',record,seed:true})),...seed.closings.map(record=>({id:record.id,type:'closing',record,seed:true})),...uploads];
+  const changes=overlay?.data||{};
+  const rows=all.filter(r=>!changes[r.id]?.deleted).map(r=>{const result={...r,record:changes[r.id]?.record||r.record};result.revision=createHash('sha256').update(JSON.stringify(result.record)).digest('hex');return result;});return {rows,uploads,overlay,changes,all};
+ };
+ if(path==='/api/manage'&&req.method==='GET'){const {rows}=await effective();return response(rows.map(({attachment,...r})=>r));}
+ if(path==='/api/manage'&&req.method==='POST'){
+  const raw=await req.text();if(raw.length>20000)return response({error:'Richiesta troppo grande'},413);const d=JSON.parse(raw);
+  const state=await effective(),item=state.rows.find(r=>r.id===d.id);
+  if(!item)return response({error:'Documento non trovato o già eliminato'},404);
+  if(d.revision!==item.revision)return response({error:'Documento modificato da un altro utente. Ricarica prima di riprovare.'},409);
+  if(!['edit','delete'].includes(d.action))return response({error:'Azione non valida'},400);
+  let record=structuredClone(item.record);
+  if(d.action==='edit'){
+   if(typeof d.date!=='string'||!/^20\d{2}-\d{2}-\d{2}$/.test(d.date)||d.date<'2026-09-01'||isNaN(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date)return response({error:'Data non valida'},400);
+   const keys=item.type==='closing'?['barTotal','kitchenTotal','takeawayHandwritten','pos','cashAfterOutflow','reportedTotal']:['amountCents'];
+   if(keys.some(k=>!Number.isSafeInteger(d[k])||d[k]<0||d[k]>100000000))return response({error:'Importi non validi'},400);
+   for(const k of keys)record[k]=d[k];record.date=d.date;
+   if(item.type==='closing'){
+    if(state.rows.some(r=>r.id!==item.id&&r.type==='closing'&&r.record.date===d.date))return response({error:'Esiste già una chiusura in questa data'},409);
+    record.dateLabel=d.date.slice(8)+'/'+d.date.slice(5,7);record.registeredTotal=d.barTotal+d.kitchenTotal;record.netCollection=d.reportedTotal;
+   }else{
+    if(typeof d.supplier!=='string'||!d.supplier.trim()||d.supplier.length>150||typeof d.number!=='string'||d.number.length>80||!['Bar','Cucina','Varie','Da chiarire'].includes(d.group))return response({error:'Fornitore, numero o reparto non valido'},400);
+    if(d.number.trim()&&state.rows.some(r=>r.id!==item.id&&r.type==='invoice'&&(r.record.supplier||r.record.name).toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.record.invoiceNumber||r.record.documentNumber||'').toLowerCase()===d.number.trim().toLowerCase()&&r.record.date.slice(0,4)===d.date.slice(0,4)))return response({error:'Numero documento già presente per questo fornitore'},409);
+    record.name=d.supplier.trim();record.supplier=d.supplier.trim();record.invoiceNumber=d.number.trim();if(record.documentNumber)record.documentNumber=d.number.trim();record.group=d.group;
+   }
+   record.editedAt=new Date().toISOString();
+  }
+  state.changes[d.id]={record,deleted:d.action==='delete',updatedAt:new Date().toISOString()};
+  const result=await store.setJSON('management/overrides',state.changes,state.overlay?{onlyIfMatch:state.overlay.etag}:{onlyIfNew:true});
+  return result.modified?response({ok:true}):response({error:'Archivio aggiornato nel frattempo. Ricarica e riprova.'},409);
+ }
+
  if(path==='/api/records'&&req.method==='POST'){
   if(Number(req.headers.get('content-length')||0)>4500000)return response({error:'File troppo grande'},413);
   const raw=await req.text();if(raw.length>4500000)return response({error:'File troppo grande'},413);const d=JSON.parse(raw);
@@ -34,8 +68,9 @@ export function createHandler(storeFactory=()=>getStore({name:'accounting-428-js
   const valid=a.mime==='application/pdf'?bytes.subarray(0,5).toString()==='%PDF-':a.mime==='image/jpeg'?bytes[0]===255&&bytes[1]===216:bytes.subarray(0,8).toString('hex')==='89504e470d0a1a0a';if(!valid)return response({error:'Formato allegato non valido'},400);
   const identity=d.type==='closing'?d.date:d.supplier.trim().toLowerCase()+'|'+d.number.trim().toLowerCase()+'|'+d.date.slice(0,4);
   const id=createHash('sha256').update(d.type+'|'+identity).digest('hex');const source='/api/attachment/'+id;
-  if(d.type==='closing'&&seed.closings.some(r=>r.date===d.date))return response({error:'Chiusura già presente per questa data'},409);
-  if(d.type==='invoice'&&(seed.expenses.records.some(r=>(r.supplier||r.name).toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.invoiceNumber||r.documentNumber)===d.number.trim())||seed.invoices.some(r=>r.supplier?.toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.number)===d.number.trim())))return response({error:'Documento già presente'},409);
+  const current=await effective();
+  if(d.type==='closing'&&current.rows.some(r=>r.type==='closing'&&r.record.date===d.date))return response({error:'Chiusura già presente per questa data'},409);
+  if(d.type==='invoice'&&(current.rows.filter(r=>r.type==='invoice').map(r=>r.record).some(r=>(r.supplier||r.name).toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.invoiceNumber||r.documentNumber)===d.number.trim())))return response({error:'Documento già presente'},409);
   let record;if(d.type==='closing'){const bar=cents('bar'),kitchen=cents('kitchen'),pos=cents('pos'),cash=cents('cash'),total=cents('total');record={id,date:d.date,dateLabel:d.date.slice(8)+'/'+d.date.slice(5,7),barTotal:bar,kitchenTotal:kitchen,registeredTotal:bar+kitchen,pos,cashAfterOutflow:cash,reportedTotal:total,netCollection:total,takeawayHandwritten:cents('takeaway'),bar:[],kitchen:[],sources:[source]};}
   else record={id,date:d.date,name:d.supplier.trim(),supplier:d.supplier.trim(),invoiceNumber:d.number.trim(),amountCents:cents('total'),group:d.group,category:'Fattura fornitore',note:'Documento '+d.number.trim(),source,status:'Inserito dal sito',candidateCents:null};
   const result=await store.setJSON('records/'+id,{id,type:d.type,record,attachment:{mime:a.mime,data:a.data},createdAt:new Date().toISOString()},{onlyIfNew:true});
@@ -43,10 +78,12 @@ export function createHandler(storeFactory=()=>getStore({name:'accounting-428-js
  }
  if(req.method!=='GET')return response({error:'Metodo non consentito'},405);
  if(path.startsWith('/api/attachment/')){const id=path.split('/').pop();if(!/^[a-f0-9]{64}$/.test(id))return response({},404);const row=await store.get('records/'+id,{type:'json'});return row?response(Buffer.from(row.attachment.data,'base64'),200,row.attachment.mime,{'Content-Disposition':'inline; filename="allegato"'}):response({},404);}
- if(['/expenses.json','/closings.json','/api/database','/api/records'].includes(path)){
-  const rows=await entries();const db=structuredClone(seed);db.expenses.records.push(...rows.filter(r=>r.type==='invoice').map(r=>r.record));db.closings.push(...rows.filter(r=>r.type==='closing').map(r=>r.record));db.uploads=rows;
+ if(['/expenses.json','/closings.json','/invoices.json','/api/database','/api/records'].includes(path)){
+  const state=await effective(),rows=state.rows;const db=structuredClone(seed);db.expenses.records=rows.filter(r=>r.type==='invoice').map(r=>r.record);db.closings=rows.filter(r=>r.type==='closing').map(r=>r.record);db.uploads=state.uploads;db.changes=state.changes;
+  db.invoices=seed.invoices.flatMap(inv=>{const r=db.expenses.records.find(r=>r.id===inv.expenseId);if(!r)return [];return [{...inv,supplier:r.supplier||r.name,number:r.invoiceNumber||r.documentNumber||inv.number,date:r.date.split('-').reverse().join('/'),total:r.amountCents/100,edited:!!r.editedAt}];});
+  if(path==='/invoices.json')return response(db.invoices);
   if(path==='/api/database')return response(db,200,'application/json',{'Content-Disposition':'attachment; filename="database-428.json"'});
-  if(path==='/api/records')return response(rows.map(({attachment,...r})=>r));return response(path==='/expenses.json'?db.expenses:db.closings);
+  if(path==='/api/records')return response(rows.filter(r=>!r.seed).map(({attachment,...r})=>r));return response(path==='/expenses.json'?db.expenses:db.closings);
  }
  const file=resolve(root,'.'+decodeURIComponent(path==='/'?'/index.html':path));if(!file.startsWith(root+sep))return response({},404);
  const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.pdf':'application/pdf','.css':'text/css'};
