@@ -5,7 +5,7 @@ let handler=createHandler(()=>store);let cookie='';
 const call=(path,body,auth=true)=>handler(new Request('https://example.netlify.app'+path,{method:body?'POST':'GET',headers:{...(auth?{cookie}:{}),...(body?{'origin':'https://example.netlify.app','content-type':'application/json'}:{})},body:body?JSON.stringify(body):undefined}));
 assert.equal((await call('/expenses.json',null,false)).status,401);
 assert.equal((await call('/api/database',null,false)).status,401);
-const login=await handler(new Request('https://example.netlify.app/login',{method:'POST',headers:{origin:'https://example.netlify.app'},body:new URLSearchParams({password:'aldo4'})}));assert.equal(login.status,303);cookie=login.headers.get('set-cookie').split(';')[0];
+const login=await handler(new Request('https://example.netlify.app/login',{method:'POST',headers:{origin:'https://example.netlify.app'},body:new URLSearchParams({password:process.env.TEST_PASSWORD||''})}));assert.equal(login.status,303);cookie=login.headers.get('set-cookie').split(';')[0];
 assert.equal((await call('/')).status,200);
 const initial=await (await call('/expenses.json')).json();const sum=d=>d.records.reduce((a,r)=>a+(r.amountCents||0),0);
 const attachment={mime:'application/pdf',data:Buffer.from('%PDF-1.4\nTest').toString('base64')};
@@ -48,3 +48,29 @@ for(const item of (await managed()).filter(x=>!x.seed)){
 assert.equal((await (await call('/api/records')).json()).length,0);
 const backup=await (await call('/api/database')).json();assert.equal(backup.changes['exp-069'].deleted,true);assert.equal(backup.uploads.length,2);
 console.log('PASS: edits/deletions for original and uploaded records, invoice synchronization, total recomputation, stale revisions, duplicate dates, invalid edits, retained originals and restart persistence.');
+
+const categories=['Stipendi dipendenti','Commercialista','Acqua','Corrente','Guasti e manutenzione','Innovazioni e miglioramenti','Amazon','Cinese','Supermercato'];
+const baseExpenses=await (await call('/expenses.json')).json();
+const monthSum=(d,m)=>d.records.filter(r=>r.date.startsWith(m)).reduce((s,r)=>s+(r.amountCents||0),0);
+let managementIds=[];
+for(const [i,category] of categories.entries()){
+ const expense={type:'expense',category,supplier:'Prova '+category,date:i===0?'2026-09-30':'2026-10-07',total:10000+i,group:'Varie',note:'Periodo di riferimento',requestId:`00000000-0000-4000-8000-${String(i).padStart(12,'0')}`,...(i===8?{attachment}:{})};
+ const r=await call('/api/records',expense);assert.equal(r.status,201);managementIds.push((await r.json()).id);
+ assert.equal((await call('/api/records',expense)).status,409);
+}
+handler=createHandler(()=>store);
+let expenses=await (await call('/expenses.json')).json();assert.equal(monthSum(expenses,'2026-09'),monthSum(baseExpenses,'2026-09')+10000);assert.equal(monthSum(expenses,'2026-10'),monthSum(baseExpenses,'2026-10')+80036);
+assert.equal((await call('/api/attachment/'+managementIds[0])).status,404);
+assert.equal((await call('/api/attachment/'+managementIds[8])).status,200);
+let item=(await managed()).find(x=>x.id===managementIds[0]);
+const edit={action:'edit',id:item.id,revision:item.revision,date:'2026-10-08',amountCents:20000,supplier:'Stipendi aggiornati',number:'',group:'Cucina',category:categories[0],note:'Ottobre'};
+assert.equal((await call('/api/manage',edit)).status,200);
+expenses=await (await call('/expenses.json')).json();assert.equal(monthSum(expenses,'2026-09'),monthSum(baseExpenses,'2026-09'));assert.equal(monthSum(expenses,'2026-10'),monthSum(baseExpenses,'2026-10')+100036);
+item=(await managed()).find(x=>x.id===managementIds[0]);assert.equal((await call('/api/manage',{...edit,revision:item.revision,category:'Inventata'})).status,400);
+assert.equal((await call('/api/manage',{action:'delete',id:item.id,revision:item.revision})).status,200);
+expenses=await (await call('/expenses.json')).json();assert.equal(monthSum(expenses,'2026-10'),monthSum(baseExpenses,'2026-10')+80036);
+for(const bad of [{category:'Inventata'},{total:-1},{total:1.5},{total:0},{date:'2026-02-30'}])assert.equal((await call('/api/records',{type:'expense',category:categories[0],date:'2026-10-07',supplier:'Test',total:100,group:'Varie',note:'',requestId:'00000000-0000-4000-8000-000000000099',...bad})).status,400);
+assert.equal((await call('/spese-gestione.html',null,false)).status,401);
+assert.equal((await call('/spese-gestione.html')).status,200);
+const expenseBackup=await (await call('/api/database')).json();assert.equal(expenseBackup.uploads.filter(r=>r.type==='expense').length,9);
+console.log('PASS: all nine management categories, optional attachments, idempotency, month allocation, edit/move/delete totals, validation, persistence and backup.');

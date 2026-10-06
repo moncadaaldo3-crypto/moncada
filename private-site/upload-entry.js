@@ -1,5 +1,11 @@
 (()=>{
-const nav=document.querySelector('nav'),button=document.createElement('button');button.textContent='Carica documenti';button.onclick=()=>location.href='/inserimento.html';nav.append(button);const manage=document.createElement('a');manage.className='link';manage.href='/gestione.html';manage.textContent='Modifica / elimina';nav.append(manage);
+const theme=document.createElement('link');theme.rel='stylesheet';theme.href='/theme.css';document.head.append(theme);
+const overview=document.getElementById('overview');overview.querySelector('h1').textContent='Il tuo locale, in numeri.';
+const quick=document.createElement('div');quick.className='tools';for(const [href,label] of [['/spese-gestione.html','+ Spesa di gestione'],['/inserimento.html','+ Fattura o chiusura']]){const a=document.createElement('a');a.href=href;a.className='link';a.textContent=label;quick.append(a)}overview.querySelector('.intro').after(quick);
+const stamp=overview.querySelector('.herofoot small');if(stamp)stamp.textContent='Dati aggiornati a ogni registrazione';
+
+window.addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
+const nav=document.querySelector('nav'),button=document.createElement('button');button.textContent='Carica documenti';button.onclick=()=>location.href='/inserimento.html';nav.append(button);const expense=document.createElement('a');expense.className='link primary';expense.href='/spese-gestione.html';expense.textContent='Spese di gestione';nav.prepend(expense);const manage=document.createElement('a');manage.className='link';manage.href='/gestione.html';manage.textContent='Modifica / elimina';nav.append(manage);
 const backup=document.createElement('a');backup.className='link';backup.href='/api/database';backup.textContent='Esporta database JSON';nav.append(backup);
 const logout=document.createElement('form');logout.method='post';logout.action='/logout';logout.innerHTML='<button>Esci</button>';nav.append(logout);
 for(const [id,type] of [['closings','closing'],['invoices','invoice']]){const a=document.createElement('a');a.href='/gestione.html?type='+type;a.className='link';a.textContent='Modifica / elimina';document.getElementById(id).prepend(a);}

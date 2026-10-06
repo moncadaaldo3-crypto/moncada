@@ -2,6 +2,7 @@ import {getStore} from '@netlify/blobs';
 import {readFile} from 'node:fs/promises';
 import {resolve,sep,extname} from 'node:path';
 import {createHmac,scryptSync,timingSafeEqual,createHash} from 'node:crypto';
+const expenseCategories=['Stipendi dipendenti','Commercialista','Acqua','Corrente','Guasti e manutenzione','Innovazioni e miglioramenti','Amazon','Cinese','Supermercato'];
 const root=resolve('private-site');
 const settings=JSON.parse(await readFile(resolve('server-config.json'),'utf8'));
 const seed=JSON.parse(await readFile(resolve('database.json'),'utf8'));
@@ -47,6 +48,7 @@ export function createHandler(storeFactory=()=>getStore({name:'accounting-428-js
    }else{
     if(typeof d.supplier!=='string'||!d.supplier.trim()||d.supplier.length>150||typeof d.number!=='string'||d.number.length>80||!['Bar','Cucina','Varie','Da chiarire'].includes(d.group))return response({error:'Fornitore, numero o reparto non valido'},400);
     if(d.number.trim()&&state.rows.some(r=>r.id!==item.id&&r.type==='invoice'&&(r.record.supplier||r.record.name).toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.record.invoiceNumber||r.record.documentNumber||'').toLowerCase()===d.number.trim().toLowerCase()&&r.record.date.slice(0,4)===d.date.slice(0,4)))return response({error:'Numero documento già presente per questo fornitore'},409);
+    if(item.type==='expense'){if(!expenseCategories.includes(d.category)||typeof d.note!=='string'||d.note.length>500)return response({error:'Categoria o descrizione non valida'},400);record.category=d.category;record.note=d.note;}
     record.name=d.supplier.trim();record.supplier=d.supplier.trim();record.invoiceNumber=d.number.trim();if(record.documentNumber)record.documentNumber=d.number.trim();record.group=d.group;
    }
    record.editedAt=new Date().toISOString();
@@ -59,27 +61,30 @@ export function createHandler(storeFactory=()=>getStore({name:'accounting-428-js
  if(path==='/api/records'&&req.method==='POST'){
   if(Number(req.headers.get('content-length')||0)>4500000)return response({error:'File troppo grande'},413);
   const raw=await req.text();if(raw.length>4500000)return response({error:'File troppo grande'},413);const d=JSON.parse(raw);
-  if(!['invoice','closing'].includes(d.type)||!/^20\d{2}-\d{2}-\d{2}$/.test(d.date)||d.date<'2026-09-01'||isNaN(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date) return response({error:'Data o tipo non valido'},400);
+  if(!['invoice','closing','expense'].includes(d.type)||!/^20\d{2}-\d{2}-\d{2}$/.test(d.date)||d.date<'2026-09-01'||isNaN(Date.parse(d.date))||new Date(d.date).toISOString().slice(0,10)!==d.date) return response({error:'Data o tipo non valido'},400);
   const cents=k=>{if(!Number.isSafeInteger(d[k])||d[k]<0||d[k]>100000000)throw Error('Importo non valido');return d[k]};
   if(d.type==='invoice'&&(!d.supplier?.trim()||!d.number?.trim()||!['Bar','Cucina','Varie'].includes(d.group)))return response({error:'Compila fornitore, numero e reparto'},400);
   if((d.supplier||'').length>150||(d.number||'').length>80)return response({error:'Testo troppo lungo'},400);
-  const a=d.attachment;if(!a||!['image/jpeg','image/png','application/pdf'].includes(a.mime)||typeof a.data!=='string'||a.data.length>4200000||!/^[A-Za-z0-9+/]*={0,2}$/.test(a.data))return response({error:'Allega JPG, PNG o PDF fino a 3 MB'},400);
+  if(d.type==='expense'&&(!expenseCategories.includes(d.category)||typeof d.supplier!=='string'||!d.supplier.trim()||typeof d.note!=='string'||d.note.length>500||!['Bar','Cucina','Varie'].includes(d.group)||typeof d.requestId!=='string'||!/^[-a-f0-9]{36}$/.test(d.requestId)))return response({error:'Compila categoria, descrizione, reparto e importo'},400);
+  if(d.type==='expense'&&(!Number.isSafeInteger(d.total)||d.total<=0||d.total>100000000))return response({error:'Inserisci un importo maggiore di zero'},400);
+  const a=d.attachment;if(a||d.type!=='expense'){if(!a||!['image/jpeg','image/png','application/pdf'].includes(a.mime)||typeof a.data!=='string'||a.data.length>4200000||!/^[A-Za-z0-9+/]*={0,2}$/.test(a.data))return response({error:'Allega JPG, PNG o PDF fino a 3 MB'},400);
   const bytes=Buffer.from(a.data,'base64');if(bytes.length>3*1024*1024)return response({error:'Massimo 3 MB'},400);
-  const valid=a.mime==='application/pdf'?bytes.subarray(0,5).toString()==='%PDF-':a.mime==='image/jpeg'?bytes[0]===255&&bytes[1]===216:bytes.subarray(0,8).toString('hex')==='89504e470d0a1a0a';if(!valid)return response({error:'Formato allegato non valido'},400);
-  const identity=d.type==='closing'?d.date:d.supplier.trim().toLowerCase()+'|'+d.number.trim().toLowerCase()+'|'+d.date.slice(0,4);
-  const id=createHash('sha256').update(d.type+'|'+identity).digest('hex');const source='/api/attachment/'+id;
+  const valid=a.mime==='application/pdf'?bytes.subarray(0,5).toString()==='%PDF-':a.mime==='image/jpeg'?bytes[0]===255&&bytes[1]===216:bytes.subarray(0,8).toString('hex')==='89504e470d0a1a0a';if(!valid)return response({error:'Formato allegato non valido'},400);}
+  const identity=d.type==='expense'?d.requestId:d.type==='closing'?d.date:d.supplier.trim().toLowerCase()+'|'+d.number.trim().toLowerCase()+'|'+d.date.slice(0,4);
+  const id=createHash('sha256').update(d.type+'|'+identity).digest('hex');const source=a?'/api/attachment/'+id:null;
   const current=await effective();
   if(d.type==='closing'&&current.rows.some(r=>r.type==='closing'&&r.record.date===d.date))return response({error:'Chiusura già presente per questa data'},409);
   if(d.type==='invoice'&&(current.rows.filter(r=>r.type==='invoice').map(r=>r.record).some(r=>(r.supplier||r.name).toLowerCase()===d.supplier.trim().toLowerCase()&&String(r.invoiceNumber||r.documentNumber)===d.number.trim())))return response({error:'Documento già presente'},409);
   let record;if(d.type==='closing'){const bar=cents('bar'),kitchen=cents('kitchen'),pos=cents('pos'),cash=cents('cash'),total=cents('total');record={id,date:d.date,dateLabel:d.date.slice(8)+'/'+d.date.slice(5,7),barTotal:bar,kitchenTotal:kitchen,registeredTotal:bar+kitchen,pos,cashAfterOutflow:cash,reportedTotal:total,netCollection:total,takeawayHandwritten:cents('takeaway'),bar:[],kitchen:[],sources:[source]};}
+  else if(d.type==='expense')record={id,date:d.date,name:d.supplier.trim(),supplier:d.supplier.trim(),amountCents:cents('total'),group:d.group,category:d.category,note:d.note.trim(),source,status:'Inserito dal sito',candidateCents:null};
   else record={id,date:d.date,name:d.supplier.trim(),supplier:d.supplier.trim(),invoiceNumber:d.number.trim(),amountCents:cents('total'),group:d.group,category:'Fattura fornitore',note:'Documento '+d.number.trim(),source,status:'Inserito dal sito',candidateCents:null};
-  const result=await store.setJSON('records/'+id,{id,type:d.type,record,attachment:{mime:a.mime,data:a.data},createdAt:new Date().toISOString()},{onlyIfNew:true});
+  const result=await store.setJSON('records/'+id,{id,type:d.type,record,attachment:a?{mime:a.mime,data:a.data}:null,createdAt:new Date().toISOString()},{onlyIfNew:true});
   return result.modified?response({ok:true,id},201):response({error:'Documento già registrato: nessuna duplicazione'},409);
  }
  if(req.method!=='GET')return response({error:'Metodo non consentito'},405);
- if(path.startsWith('/api/attachment/')){const id=path.split('/').pop();if(!/^[a-f0-9]{64}$/.test(id))return response({},404);const row=await store.get('records/'+id,{type:'json'});return row?response(Buffer.from(row.attachment.data,'base64'),200,row.attachment.mime,{'Content-Disposition':'inline; filename="allegato"'}):response({},404);}
+ if(path.startsWith('/api/attachment/')){const id=path.split('/').pop();if(!/^[a-f0-9]{64}$/.test(id))return response({},404);const row=await store.get('records/'+id,{type:'json'});return row?.attachment?response(Buffer.from(row.attachment.data,'base64'),200,row.attachment.mime,{'Content-Disposition':'inline; filename="allegato"'}):response({},404);}
  if(['/expenses.json','/closings.json','/invoices.json','/api/database','/api/records'].includes(path)){
-  const state=await effective(),rows=state.rows;const db=structuredClone(seed);db.expenses.records=rows.filter(r=>r.type==='invoice').map(r=>r.record);db.closings=rows.filter(r=>r.type==='closing').map(r=>r.record);db.uploads=state.uploads;db.changes=state.changes;
+  const state=await effective(),rows=state.rows;const db=structuredClone(seed);db.expenses.records=rows.filter(r=>r.type==='invoice'||r.type==='expense').map(r=>r.record);db.closings=rows.filter(r=>r.type==='closing').map(r=>r.record);db.uploads=state.uploads;db.changes=state.changes;
   db.invoices=seed.invoices.flatMap(inv=>{const r=db.expenses.records.find(r=>r.id===inv.expenseId);if(!r)return [];return [{...inv,supplier:r.supplier||r.name,number:r.invoiceNumber||r.documentNumber||inv.number,date:r.date.split('-').reverse().join('/'),total:r.amountCents/100,edited:!!r.editedAt}];});
   if(path==='/invoices.json')return response(db.invoices);
   if(path==='/api/database')return response(db,200,'application/json',{'Content-Disposition':'attachment; filename="database-428.json"'});
